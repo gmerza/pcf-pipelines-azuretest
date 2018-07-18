@@ -33,7 +33,7 @@ resource "azurerm_subnet" "services_subnet" {
 }
 
 resource "azurerm_subnet" "dynamic_services_subnet" {
-  name                 = "${var.env_name}-dynamic-services-subnet"
+  name                 = "${var.azure_terraform_subnet_dynamic_name}"
   resource_group_name  = "${azurerm_resource_group.pcf_resource_group.name}"
   virtual_network_name = "${azurerm_virtual_network.pcf_virtual_network.name}"
   address_prefix       = "${var.azure_terraform_subnet_dynamic_services_cidr}"
