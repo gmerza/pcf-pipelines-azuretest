@@ -4,7 +4,7 @@
 ///////////////////////////////////////////////
 
 resource "azurerm_virtual_network" "pcf_virtual_network" {
-  name                = "${var.env_name}-virtual-network"
+  name                = "${var.azure_terraform_vnet_name}"
   depends_on          = ["azurerm_resource_group.pcf_resource_group"]
   resource_group_name = "${azurerm_resource_group.pcf_resource_group.name}"
   address_space       = ["${split(",", var.azure_terraform_vnet_cidr)}"]
@@ -12,21 +12,21 @@ resource "azurerm_virtual_network" "pcf_virtual_network" {
 }
 
 resource "azurerm_subnet" "opsman_and_director_subnet" {
-  name                 = "${var.env_name}-opsman-and-director-subnet"
+  name                 = "${var.azure_terraform_infra_name}"
   resource_group_name  = "${azurerm_resource_group.pcf_resource_group.name}"
   virtual_network_name = "${azurerm_virtual_network.pcf_virtual_network.name}"
   address_prefix       = "${var.azure_terraform_subnet_infra_cidr}"
 }
 
 resource "azurerm_subnet" "ert_subnet" {
-  name                 = "${var.env_name}-ert-subnet"
+  name                 = "${var.azure_terraform_ert_name}"
   resource_group_name  = "${azurerm_resource_group.pcf_resource_group.name}"
   virtual_network_name = "${azurerm_virtual_network.pcf_virtual_network.name}"
   address_prefix       = "${var.azure_terraform_subnet_ert_cidr}"
 }
 
 resource "azurerm_subnet" "services_subnet" {
-  name                 = "${var.env_name}-services-01-subnet"
+  name                 = "${var.azure_terraform_services1_name}"
   resource_group_name  = "${azurerm_resource_group.pcf_resource_group.name}"
   virtual_network_name = "${azurerm_virtual_network.pcf_virtual_network.name}"
   address_prefix       = "${var.azure_terraform_subnet_services1_cidr}"

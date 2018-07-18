@@ -36,3 +36,9 @@ variable "azure_packages_container" {}
 variable "azure_resources_container" {}
 variable "om_disk_size_in_gb" {}
 variable "azure_opsman_priv_ip" {}
+
+variable "azure_terraform_vnet_name" {}
+variable "azure_terraform_subnet_dynamic_name" {}
+variable "azure_terraform_subnet_ert_name" {}
+variable "azure_terraform_subnet_infra_name" {}
+variable "azure_terraform_subnet_services1_name" {}
