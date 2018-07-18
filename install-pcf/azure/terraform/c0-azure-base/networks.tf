@@ -12,21 +12,21 @@ resource "azurerm_virtual_network" "pcf_virtual_network" {
 }
 
 resource "azurerm_subnet" "opsman_and_director_subnet" {
-  name                 = "${var.azure_terraform_infra_name}"
+  name                 = "${var.azure_terraform_subnet_infra_name}"
   resource_group_name  = "${azurerm_resource_group.pcf_resource_group.name}"
   virtual_network_name = "${azurerm_virtual_network.pcf_virtual_network.name}"
   address_prefix       = "${var.azure_terraform_subnet_infra_cidr}"
 }
 
 resource "azurerm_subnet" "ert_subnet" {
-  name                 = "${var.azure_terraform_ert_name}"
+  name                 = "${var.azure_terraform_subnet_ert_name}"
   resource_group_name  = "${azurerm_resource_group.pcf_resource_group.name}"
   virtual_network_name = "${azurerm_virtual_network.pcf_virtual_network.name}"
   address_prefix       = "${var.azure_terraform_subnet_ert_cidr}"
 }
 
 resource "azurerm_subnet" "services_subnet" {
-  name                 = "${var.azure_terraform_services1_name}"
+  name                 = "${var.azure_terraform_subnet_services1_name}"
   resource_group_name  = "${azurerm_resource_group.pcf_resource_group.name}"
   virtual_network_name = "${azurerm_virtual_network.pcf_virtual_network.name}"
   address_prefix       = "${var.azure_terraform_subnet_services1_cidr}"

@@ -54,7 +54,6 @@ variable "azure_buildpacks_container" {}
 variable "azure_droplets_container" {}
 variable "azure_packages_container" {}
 variable "azure_resources_container" {}
-variable "azure_opsman_priv_ip" {}
 variable "ert_subnet_id" {}
 variable "azure_multi_resgroup_network" {}
 variable "azure_multi_resgroup_pcf" {}
