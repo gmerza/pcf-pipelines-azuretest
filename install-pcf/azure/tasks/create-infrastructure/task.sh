@@ -10,7 +10,7 @@ fi
 az login --service-principal -u ${AZURE_CLIENT_ID} -p ${AZURE_CLIENT_SECRET} --tenant ${AZURE_TENANT_ID}
 az account set --subscription ${AZURE_SUBSCRIPTION_ID}
 #ERT_SUBNET_CMD="az network vnet subnet list -g network-core --vnet-name vnet-pcf --output json | jq '.[] | select(.name == \"ert\") | .id' | tr -d '\"'"
-ERT_SUBNET_CMD="az network vnet subnet list -g ${AZURE_MULTI_RESGROUP_NETWORK} --vnet-name ${AZURE_TERRAFORM_VNET_NAME}-virtual-network --output json | jq '.[] | select(.name == \"ert\") | .id' | tr -d '\"'"
+ERT_SUBNET_CMD="az network vnet subnet list -g ${AZURE_MULTI_RESGROUP_NETWORK} --vnet-name ${AZURE_TERRAFORM_VNET_NAME} --output json | jq '.[] | select(.name == \"ert\") | .id' | tr -d '\"'"
 
 ERT_SUBNET=$(eval ${ERT_SUBNET_CMD})
 echo "Found SubnetID=${ERT_SUBNET}"
@@ -79,6 +79,11 @@ terraform plan \
   -var "azure_packages_container=${AZURE_PACKAGES_CONTAINER}" \
   -var "azure_resources_container=${AZURE_RESOURCES_CONTAINER}" \
   -var "om_disk_size_in_gb=${PCF_OPSMAN_DISK_SIZE_IN_GB}" \
+  -var "azure_terraform_vnet_name=${AZURE_TERRAFORM_VNET_NAME}" \
+  -var "azure_terraform_subnet_dynamic_name=${AZURE_TERRAFORM_SUBNET_DYNAMIC_NAME}" \
+  -var "azure_terraform_subnet_ert_name=${AZURE_TERRAFORM_SUBNET_ERT_NAME}" \
+  -var "azure_terraform_subnet_infra_name=${AZURE_TERRAFORM_SUBNET_INFRA_NAME}" \
+  -var "azure_terraform_subnet_services1_name=${AZURE_TERRAFORM_SUBNET_SERVICES1_NAME}" \
   -out terraform.tfplan \
   -state terraform-state/terraform.tfstate \
   "pcf-pipelines/install-pcf/azure/terraform/${AZURE_PCF_TERRAFORM_TEMPLATE}"
