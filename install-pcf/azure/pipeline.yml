@@ -55,9 +55,8 @@ resources:
 - name: pcf-pipelines
   type: git
   source:
-    uri: https://github.com/pivotal-cf/pcf-pipelines.git
+    uri: https://github.com/gmerza/pcf-pipelines.git
     branch: master
-    tag_filter: v0.23.6
     
 - name: pivnet-opsmgr
   type: pivnet
